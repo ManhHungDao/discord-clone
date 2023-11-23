@@ -1,10 +1,4 @@
 import NavigationSidebar from "@/components/navigation/navigation-sidebar";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
