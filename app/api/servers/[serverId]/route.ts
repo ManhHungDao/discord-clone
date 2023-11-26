@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
@@ -12,8 +11,9 @@ export async function PATCH(
       return new NextResponse("Server ID Missing", { status: 400 });
 
     const profile = await currentProfile();
-    console.log("🚀 ~ file: route.ts:15 ~ profile:", profile);
     if (!profile) return new NextResponse("Unauthorized", { status: 401 });
+
+    const { name, imageUrl } = await req.json();
 
     const server = await db.server.update({
       where: {
@@ -21,12 +21,14 @@ export async function PATCH(
         profileId: profile.id,
       },
       data: {
-        inviteCode: uuidv4(),
+        name,
+        imageUrl,
       },
     });
+
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVERS_PATCH_ID]", error);
+    console.log("🚀 ~ file: route.ts:8 ~ error:", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
