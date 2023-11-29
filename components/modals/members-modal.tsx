@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "@/hooks/use-modal-store";
 import { ServerWithMembersWithProfiles } from "@/type";
 import qs from "query-string";
@@ -95,11 +95,11 @@ const MembersModal = () => {
             Manage Members
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
-            {server?.members.length}Members
+            {server?.members?.length}Members
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
-          {server?.members.map((member) => (
+          {server?.members?.map((member) => (
             <div className="flex items-center gap-x-2 mb-6" key={member.id}>
               <UserAvatar src={member.profile.imageUrl} />
               <div className="flex flex-col gap-y-1">
