@@ -13,6 +13,8 @@ export default async function handler(
   }
 
   try {
+    console.log("vao day index");
+
     const profile = await currentProfilePages(req);
     const { content, fileUrl } = req.body;
     const { serverId, channelId } = req.query;
