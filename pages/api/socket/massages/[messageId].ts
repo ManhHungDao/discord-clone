@@ -59,7 +59,7 @@ export default async function handler(
       return res.status(404).json({ error: "Channel not found" });
     }
 
-    const member = server.members.find(
+    const member: any = server.members.find(
       (member) => member.profileId === profile.id
     );
 
